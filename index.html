@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MINI SURVEY</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(to right, #e0f7fa, #fff);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .question {
+      margin-bottom: 40px;
+      transition: all 0.5s ease;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .no-btn-1 {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .no-btn-2 {
+      background-color: #e57373;
+      color: white;
+    }
+
+    .yes-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    #message, #video1, #video2 {
+      margin-top: 30px;
+    }
+
+    video {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question" id="q1">
+      <h2>1. Gaano ka kadalas gumagamit ng social media sa isang araw?</h2>
+      <button onclick="nextQuestion()">A. Halos hindi gumagamit</button>
+      <button onclick="nextQuestion()">B. 1–2 oras</button>
+      <button onclick="nextQuestion()">C. 3–5 oras</button>
+      <button onclick="nextQuestion()">D. Higit sa 5 oras</button>
+    </div>
+
+    <div class="question hidden" id="q2">
+      <h2>2. Anong ginagawa mo tuwing may libreng oras ka?</h2>
+      <button onclick="nextQuestion()">A. Nanonood ng movies o series</button>
+      <button onclick="nextQuestion()">B. Naglalaro ng online games</button>
+      <button onclick="nextQuestion()">C. Nagbabasa ng libro o articles</button>
+      <button onclick="nextQuestion()">D. Nagso-social media</button>
+    </div>
+
+    <div class="question hidden" id="q3">
+      <h2>3. Mas gusto mo ba ang online class o face-to-face class?</h2>
+      <button onclick="nextQuestion()">A. Online class</button>
+      <button onclick="nextQuestion()">B. Face-to-face class</button>
+      <button onclick="nextQuestion()">C. Pareho lang</button>
+      <button onclick="nextQuestion()">D. Wala sa nabanggit</button>
+    </div>
+
+    <div class="question hidden" id="q4">
+      <h2>4. Gaano ka kadalas mag-ehersisyo sa loob ng isang linggo?</h2>
+      <button onclick="nextQuestion()">A. Hindi nag-eehersisyo</button>
+      <button onclick="nextQuestion()">B. 1–2 beses</button>
+      <button onclick="nextQuestion()">C. 3–4 beses</button>
+      <button onclick="nextQuestion()">D. Araw-araw</button>
+    </div>
+
+    <div class="question hidden" id="q5">
+      <h2>5. Kung ikaw ang tanong… ako ang sagot. Pero ikaw, sasagutin mo ba ako? </h2>
+      <div class="btn-group">
+        <button class="no-btn-1" onclick="showVideo1()">No </button>
+        <button class="no-btn-2" onmouseover="teleport(this)">No </button>
+        <button class="yes-btn" onclick="showVideo2()">Yes</button>
+      </div>
+    </div>
+
+    <div id="message" class="hidden">  </div>
+
+    <div id="video1" class="hidden">
+      <p>Basin mag bag o imong huna huna pwede ra nimo ni e refresh nya pili ka next answer </p>
+      <video controls autoplay>
+        <source src="angry.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div id="video2" class="hidden">
+      <p>Yieeee  MWUAHHHHHH!!</p>
+      <video controls autoplay>
+        <source src="happy.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 1;
+
+    function nextQuestion() {
+      const current = document.getElementById("q" + currentQuestion);
+      const next = document.getElementById("q" + (currentQuestion + 1));
+      if (next) {
+        current.classList.add("hidden");
+        next.classList.remove("hidden");
+        currentQuestion++;
+      }
+    }
+
+    function showVideo1() {
+      document.getElementById("video1").classList.remove("hidden");
+      document.getElementById("message").classList.remove("hidden");
+    }
+
+    function teleport(btn) {
+      const randTop = Math.floor(Math.random() * 300) + 100;
+      const randLeft = Math.floor(Math.random() * 300);
+      btn.style.position = 'absolute';
+      btn.style.top = randTop + 'px';
+      btn.style.left = randLeft + 'px';
+    }
+
+    function showVideo2() {
+      document.getElementById("video2").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
